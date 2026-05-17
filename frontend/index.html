@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lobby | The Velvet Arena</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="lobby">
+    <div class="app-wrapper">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="brand flex items-center gap-2">
+          <div
+            class="bold text-xl tracking-tighter"
+            style="
+              background: var(--primary);
+              color: white;
+              padding: 0.25rem 0.5rem;
+              border-radius: 4px;
+            "
+          >
+            PAD
+          </div>
+          <span
+            class="font-headline italic text-xl"
+            style="color: var(--primary)"
+            >Arena</span
+          >
+        </div>
+
+        <div class="text-center">
+          <h2
+            class="font-headline italic text-xl"
+            style="color: var(--primary)"
+          >
+            <span data-user-name>Tactician</span>
+          </h2>
+          <p class="text-sm opacity-70" data-user-rating>Rating: 1450</p>
+        </div>
+
+        <nav class="flex flex-col gap-2" style="flex: 1">
+          <a href="index.html" class="nav-link active">
+            <span class="material-symbols-outlined">door_open</span>
+            <span>Lobby</span>
+          </a>
+          <a href="leaderboard.html" class="nav-link">
+            <span class="material-symbols-outlined">leaderboard</span>
+            <span>Leaderboard</span>
+          </a>
+          <div
+            style="
+              height: 1px;
+              background: var(--outline-variant);
+              opacity: 0.3;
+              margin: 1rem 0;
+            "
+          ></div>
+          <a href="biometric.html" class="nav-link" data-action="logout">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Logout</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-header">
+          <div class="flex items-center gap-2">
+            <h1
+              class="font-headline text-2xl bold"
+              style="color: var(--primary)"
+            >
+              Tactical Lobby
+            </h1>
+          </div>
+          <div class="flex items-center gap-6">
+            <div style="position: relative">
+              <span
+                class="material-symbols-outlined"
+                data-action="toggle-notifications"
+                style="color: var(--primary); cursor: pointer"
+                >notifications</span
+              >
+              <div
+                style="
+                  position: absolute;
+                  top: -2px;
+                  right: -2px;
+                  width: 8px;
+                  height: 8px;
+                  background: var(--primary);
+                  border-radius: 50%;
+                "
+              ></div>
+            </div>
+          </div>
+        </header>
+
+        <div
+          class="challengers-section"
+          style="display: flex; flex-direction: column; gap: 2rem"
+        >
+          <div>
+            <!-- Center Panel: Available Challengers -->
+            <div>
+              <div
+                class="flex justify-between items-end gap-4"
+                style="margin-bottom: 2rem"
+              >
+                <div>
+                  <h2 class="font-headline text-4xl italic bold text-primary">
+                    Available Challengers
+                  </h2>
+                  <p class="opacity-60">
+                    Select a master to initiate a tactical duel.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                class="grid gap-6"
+                data-lobby-grid
+                style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))"
+              ></div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <!-- Mobile Nav -->
+      <nav class="mobile-nav">
+        <a
+          href="index.html"
+          class="flex flex-col items-center gap-2"
+          style="color: var(--primary)"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >door_open</span
+          >
+          <span class="text-xs bold">Lobby</span>
+        </a>
+        <a
+          href="leaderboard.html"
+          class="flex flex-col items-center gap-2 opacity-60"
+        >
+          <span class="material-symbols-outlined">leaderboard</span>
+          <span class="text-xs">Stats</span>
+        </a>
+        <button
+          type="button"
+          data-action="new-game"
+          style="
+            background: var(--primary);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -3rem;
+            border: 4px solid var(--background);
+            box-shadow: 0 8px 24px rgba(87, 0, 0, 0.3);
+          "
+        >
+          <span class="material-symbols-outlined">add</span>
+        </button>
+        <a href="#" class="flex flex-col items-center gap-2 opacity-60">
+          <span class="material-symbols-outlined">chat</span>
+          <span class="text-xs">Chat</span>
+        </a>
+        <a href="#" class="flex flex-col items-center gap-2 opacity-60">
+          <span class="material-symbols-outlined">settings</span>
+          <span class="text-xs">Menu</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>

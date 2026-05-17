@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Velvet Arena - Tic Tac Toe</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+<body data-page="board" class="bg-heritage-cream velvet-texture">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="hidden md:flex w-72 bg-heritage-beige border-r border-stone-200 flex-col p-8 space-y-10">
+            <div class="flex items-center space-x-3">
+                <h1 class="text-2xl font-serif italic font-bold text-heritage-red">The Velvet Arena</h1>
+            </div>
+
+            <nav class="flex-1 space-y-2">
+                <a href="index.html" class="sidebar-item">
+                    <i data-lucide="door-open" size="20"></i>
+                    <span class="font-serif italic">Lobby</span>
+                </a>
+                <a href="leaderboard.html" class="sidebar-item">
+                    <i data-lucide="layout-dashboard" size="20"></i>
+                    <span class="font-serif italic">Leaderboard</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i data-lucide="settings" size="20"></i>
+                    <span class="font-serif italic">Settings</span>
+                </a>
+                <button type="button" class="sidebar-item" data-action="logout">
+                    <i data-lucide="log-out" size="20"></i>
+                    <span class="font-serif italic">Logout</span>
+                </button>
+            </nav>
+
+                <div class="pt-8 border-t border-stone-200 space-y-6">
+                    <div>
+                        <p class="font-serif italic font-bold text-heritage-red" data-user-name>Tactician</p>
+                        <p class="text-[10px] uppercase tracking-widest text-stone-500" data-user-rating>Rating: 1450</p>
+                    </div>
+                    <button id="new-game-btn" class="w-full bg-heritage-red text-white py-4 rounded-xl font-serif italic text-lg shadow-lg shadow-heritage-red/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                        New Game
+                    </button>
+                </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col relative">
+            <!-- Top Nav -->
+            <header class="px-12 py-8 flex justify-between items-center">
+                <h2 class="text-2xl font-serif italic font-bold text-heritage-red">The Heritage Tactician</h2>
+                <div class="flex items-center space-x-6">
+                    <a
+                        href="index.html"
+                        class="bg-heritage-red text-white px-5 py-3 rounded-xl font-serif italic shadow-lg shadow-heritage-red/20 hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    >
+                        Lobby
+                    </a>
+                    <button class="text-heritage-red hover:scale-110 transition-transform" data-action="toggle-notifications" type="button">
+                        <i data-lucide="bell" size="24"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Game Area -->
+            <div class="flex-1 flex flex-col items-center justify-center p-8">
+                <div class="w-full max-w-6xl flex items-center justify-between gap-12">
+                    <!-- Left Profile -->
+                    <div id="player-x-card" class="player-card flex-shrink-0 flex flex-col items-center space-y-4">
+                        <div class="turn-indicator bg-heritage-red shadow-[0_0_12px_rgba(128,0,0,0.4)]"></div>
+                        <div class="text-center">
+                            <h3 id="player-x-name" class="text-2xl font-serif italic font-bold">Grandmaster (X)</h3>
+                            <div class="flex flex-col items-center">
+                                <p id="player-x-status" class="status-text text-[10px] uppercase tracking-[0.2em] font-bold mt-1 text-heritage-red">Current Turn</p>
+                                <p class="text-xs text-stone-400 mt-1" id="player-x-rating">ELO: 2450</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Board Container -->
+                    <div class="relative p-10 bg-heritage-beige rounded-[3rem] shadow-2xl shadow-stone-900/10">
+                        <div id="board" class="grid grid-cols-3 gap-6 w-[450px] md:w-[600px]">
+                            <!-- Squares generated by JS -->
+                        </div>
+
+                        <!-- Game Result Overlay -->
+                        <div id="game-overlay" class="overlay">
+                            <div id="result-emoji" class="text-6xl mb-4">🏆</div>
+                            <h3 id="result-title" class="text-6xl md:text-8xl font-serif italic font-bold mb-4 text-heritage-red">Victory</h3>
+                            <p id="result-desc" class="text-stone-500 mb-10 max-w-xs mx-auto text-lg">
+                                Grandmaster has conquered the arena with strategic precision.
+                            </p>
+                            <p id="result-ratings" class="text-stone-600 mb-8 max-w-sm mx-auto text-sm leading-7 whitespace-pre-line"></p>
+                            <div class="flex flex-col space-y-4 w-full max-w-xs mx-auto">
+                                <button id="return-lobby-btn" type="button" class="result-lobby-button">
+                                    <span>Return to Lobby</span>
+                                    <i data-lucide="door-open" size="18" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Profile -->
+                    <div id="player-o-card" class="player-card inactive flex-shrink-0 flex flex-col items-center space-y-4">
+                        <div class="turn-indicator bg-heritage-blue shadow-[0_0_12px_rgba(0,33,185,0.4)] hidden"></div>
+                        <div class="text-center">
+                            <h3 id="player-o-name" class="text-2xl font-serif italic font-bold">IvoryKnight (O)</h3>
+                            <div class="flex flex-col items-center">
+                                <p id="player-o-status" class="status-text text-[10px] uppercase tracking-[0.2em] font-bold mt-1 text-stone-400">Waiting...</p>
+                                <p class="text-xs text-stone-400 mt-1" id="player-o-rating">ELO: 2380</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Footer -->
+                <footer class="mt-16 flex items-center space-x-16">
+                    <div class="flex flex-col items-center">
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2 font-bold">Timer</span>
+                        <span id="timer-val" class="text-3xl font-serif italic font-bold text-stone-800">00:00</span>
+                    </div>
+                    <div class="h-10 w-px bg-stone-200"></div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2 font-bold">Moves</span>
+                        <span id="moves-val" class="text-3xl font-serif italic font-bold text-stone-800">00</span>
+                    </div>
+                    <div class="h-10 w-px bg-stone-200"></div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-[10px] uppercase tracking-[0.3em] text-stone-400 mb-2 font-bold">Stakes</span>
+                        <span class="text-3xl font-serif italic font-bold text-heritage-red">250 GC</span>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard | The Velvet Arena</title>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body data-page="leaderboard">
+    <div class="app-wrapper">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <div class="brand flex items-center gap-2">
+          <div
+            class="bold text-xl tracking-tighter"
+            style="
+              background: var(--primary);
+              color: white;
+              padding: 0.25rem 0.5rem;
+              border-radius: 4px;
+            "
+          >
+            PAD
+          </div>
+          <span
+            class="font-headline italic text-xl"
+            style="color: var(--primary)"
+            >Arena</span
+          >
+        </div>
+
+        <div class="text-center">
+          <h2
+            class="font-headline italic text-xl"
+            style="color: var(--primary)"
+          >
+            <span data-user-name>Tactician</span>
+          </h2>
+          <p class="text-sm opacity-70" data-user-rating>Rating: 1450</p>
+        </div>
+
+        <button class="btn-primary w-full" data-action="new-game">New Game</button>
+
+        <nav class="flex flex-col gap-2" style="flex: 1">
+          <a href="index.html" class="nav-link">
+            <span class="material-symbols-outlined">door_open</span>
+            <span>Lobby</span>
+          </a>
+          <a href="leaderboard.html" class="nav-link active">
+            <span class="material-symbols-outlined">leaderboard</span>
+            <span>Leaderboard</span>
+          </a>
+          <div
+            style="
+              height: 1px;
+              background: var(--outline-variant);
+              opacity: 0.3;
+              margin: 1rem 0;
+            "
+          ></div>
+          <a href="biometric.html" class="nav-link" data-action="logout">
+            <span class="material-symbols-outlined">logout</span>
+            <span>Logout</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="top-header">
+          <div class="flex items-center gap-8">
+            <div
+              class="font-headline text-2xl bold"
+              style="color: var(--primary)"
+            >
+              The Velvet Arena
+            </div>
+            <nav class="flex gap-8" style="margin-left: 2rem">
+              <a
+                href="leaderboard.html"
+                class="font-headline italic bold"
+                style="
+                  color: var(--primary);
+                  border-bottom: 2px solid var(--primary);
+                "
+                >Rankings</a
+              >
+            </nav>
+          </div>
+          <div class="flex items-center gap-6">
+            <span
+              class="material-symbols-outlined"
+              data-action="toggle-notifications"
+              style="color: var(--primary); cursor: pointer"
+              >notifications</span
+            >
+          </div>
+        </header>
+
+        <section
+          class="challengers-section"
+          style="max-width: 1100px; margin: 0 auto"
+        >
+          <div
+            class="text-center"
+            style="margin-bottom: 4rem; text-align: left"
+          >
+            <h1
+              class="font-accent italic bold"
+              style="
+                font-size: 5rem;
+                color: var(--primary);
+                line-height: 1;
+                margin-bottom: 1rem;
+              "
+            >
+              Hall of Fame
+            </h1>
+            <p class="font-headline italic text-xl opacity-60">
+              Where history is written in every move.
+            </p>
+          </div>
+
+          <!-- Table -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Player Name</th>
+                  <th class="text-center">Rating</th>
+                </tr>
+              </thead>
+              <tbody data-leaderboard-body></tbody>
+            </table>
+            <div
+              class="flex justify-between items-center"
+              style="padding: 2rem; background: rgba(237, 232, 217, 0.3)"
+            >
+              <div></div>
+              <div class="flex items-center gap-4">
+                <span class="material-symbols-outlined" data-action="leaderboard-prev" style="cursor: pointer"
+                  >chevron_left</span
+                >
+                <span
+                  data-leaderboard-page
+                  class="font-headline italic text-sm"
+                  style="
+                    background: white;
+                    padding: 4px 16px;
+                    border-radius: 999px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                  "
+                  >Page 1 of 1</span
+                >
+                <span class="material-symbols-outlined" data-action="leaderboard-next" style="cursor: pointer"
+                  >chevron_right</span
+                >
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </main>
+
+      <!-- Mobile Nav -->
+      <nav class="mobile-nav">
+        <a
+          href="index.html"
+          class="flex flex-col items-center gap-2 opacity-60"
+        >
+          <span class="material-symbols-outlined">door_open</span>
+          <span class="text-xs">Lobby</span>
+        </a>
+        <a
+          href="leaderboard.html"
+          class="flex flex-col items-center gap-2"
+          style="color: var(--primary)"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >leaderboard</span
+          >
+          <span class="text-xs bold">Ranking</span>
+        </a>
+        <button
+          type="button"
+          data-action="new-game"
+          style="
+            background: var(--primary);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -3rem;
+            border: 4px solid var(--background);
+            box-shadow: 0 8px 24px rgba(87, 0, 0, 0.3);
+          "
+        >
+          <span class="material-symbols-outlined">add</span>
+        </button>
+        <a href="#" class="flex flex-col items-center gap-2 opacity-60">
+          <span class="material-symbols-outlined">settings</span>
+          <span class="text-xs">Menu</span>
+        </a>
+        <a href="#" class="flex flex-col items-center gap-2 opacity-60">
+          <span class="material-symbols-outlined">person</span>
+          <span class="text-xs">Profile</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+  </body>
+</html>
