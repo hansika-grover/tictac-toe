@@ -2,7 +2,7 @@
 
 Course project for **CS6.201: Introduction to Software Systems**.
 
-This project is a full-stack multiplayer Tic-Tac-Toe arena where players do not sign in with passwords. Instead, every user is verified through a webcam-based facial login against profile images harvested from the batch websites. After login, users enter a live WebSocket lobby, challenge each other in real time, play in isolated game rooms, and receive Elo updates when a match ends.
+This project is a full-stack multiplayer Tic-Tac-Toe Arena where players do not sign in with passwords. Instead, every user is verified through a webcam-based facial login against profile images harvested from the batch websites. After login, users enter a live WebSocket lobby, challenge each other in real time, play in isolated game rooms, and receive Elo updates when a match ends.
 
 The app is built around the four project phases: data harvesting, biometric authentication, synchronized multiplayer gameplay, and Elo-based ranking.
 
